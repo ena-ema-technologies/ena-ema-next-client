@@ -1,15 +1,28 @@
-import { Controller } from "react-hook-form";
+import { Controller } from 'react-hook-form';
 
- 
-const EnaInput = ({type, name, label})=> { 
+type TInputProps = {
+  type: string;
+  name: string;
+  label?: string
+  placeholder?: string;
+}
+
+const EnaInput = ({ type, name, label, placeholder }: TInputProps) => {
   return (
     <>
-    {label?label: null}
-    <Controller 
-    name={name}
-    render={({field}) => <input {...field} type={type} id={name} className="input w-full max-w-xs border border-slate-600"/>  }
-    
-    />
+      {label ? label : null}
+      <Controller
+        name={name}
+        render={({ field }) => (
+          <input
+            {...field}
+            type={type}
+            id={name}
+            placeholder={name}
+            className="w-full bg-[#f8f8f8] border border-slate-300 text-gray-900 mt-2 p-4 rounded-lg focus:outline-none focus:shadow-outline"
+          />
+        )}
+      />
     </>
   );
 };

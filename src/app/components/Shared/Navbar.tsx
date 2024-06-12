@@ -12,18 +12,17 @@ const Navbar = () => {
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [showMenu, setShowMenu] = useState(false); 
+  const [showMenu, setShowMenu] = useState(false);
 
-  const handleLogout = async () => { 
+  const handleLogout = async () => {
     const toastId = toast.loading('loading...');
-    try{
+    try {
       dispatch(logout());
-      toast.success('Logged out', { id: toastId, duration: 2000 }); 
+      toast.success('Logged out', { id: toastId, duration: 2000 });
       router.push('/login');
-
-    }catch(error){
-      toast.error("Logout failed", { id: toastId, duration: 2000 })
-    } 
+    } catch (error) {
+      toast.error('Logout failed', { id: toastId, duration: 2000 });
+    }
   };
 
   return (
@@ -53,25 +52,22 @@ const Navbar = () => {
 
               <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-                  
-                    <Link href="/login">
-                      <button className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white">
-                        <span className="absolute bottom-0 left-0 flex w-full h-0 mt-0 transition-all duration-500 ease-out transform translate-y-0 bg-gray-200 group-hover:h-full"></span>
-                        <span className="relative group-hover:text-black font-bold justify-center">
-                          Login
-                        </span>
-                      </button>
-                    </Link>
-               
-                      <span className="text-white font-medium ">Welcome!</span>
-                      <button
-                        onClick={handleLogout}
-                        className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white"
-                      >
-                        Logout
-                      </button>
-                    
-                 
+                  <Link href="/login">
+                    <button className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white">
+                      <span className="absolute bottom-0 left-0 flex w-full h-0 mt-0 transition-all duration-500 ease-out transform translate-y-0 bg-gray-200 group-hover:h-full"></span>
+                      <span className="relative group-hover:text-black font-bold justify-center">
+                        Login
+                      </span>
+                    </button>
+                  </Link>
+
+                  <span className="text-white font-medium ">Welcome!</span>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white"
+                  >
+                    Logout
+                  </button>
                 </div>
 
                 <div className="flex lg:hidden">

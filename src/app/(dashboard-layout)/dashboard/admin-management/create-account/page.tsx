@@ -1,4 +1,6 @@
 'use client';
+import EnaForm from '@/app/components/Dashboard/Form/EnaForm/EnaForm';
+import EnaInput from '@/app/components/Dashboard/Form/EnaInput/EnaInput';
 import { useRegisterMutation } from '@/redux/features/register/registerApi';
 import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -6,7 +8,7 @@ import { toast } from 'sonner';
 const image_upload_token = process.env.NEXT_PUBLIC_image_upload_token;
 
 const CreateAccount = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, reset } = useForm();
   const [createUser] = useRegisterMutation();
   const image_upload_url = `https://api.imgbb.com/1/upload?key=${image_upload_token}`;
 
@@ -58,27 +60,8 @@ const CreateAccount = () => {
   return (
     <div className="col-span-3 px-4 lg:px-0">
       <h1 className="text-2xl mt-20">Create an Admin</h1>
-      <form className="lg:pe-10" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 my-5 ">
-          <input
-            {...register('id')}
-            className="w-full bg-[#f8f8f8] border border-slate-300 text-gray-900 mt-2 p-4 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Admin Id"
-          />
-          <input
-            {...register('name')}
-            className="w-full bg-[#f8f8f8] border border-slate-300 text-gray-900 mt-2 p-4 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Your Full Name"
-          />
-          <input
-            {...register('email')}
-            className="w-full bg-[#f8f8f8] border border-slate-300 text-gray-900 mt-2 p-4 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Your email"
-          />
-        </div>
+      <EnaForm  onSubmit={onSubmit}>
+         
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 my-5">
           <input
             {...register('password')}
@@ -125,7 +108,7 @@ const CreateAccount = () => {
             </span>
           </button>
         </div>
-      </form>
+      </EnaForm>
     </div>
   );
 };

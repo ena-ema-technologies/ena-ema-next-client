@@ -34,16 +34,15 @@ const Sidebar = () => {
   const router = useRouter();
 
   // logout user
-  const handleLogout = async () => { 
+  const handleLogout = async () => {
     const toastId = toast.loading('loading...');
-    try{
+    try {
       dispatch(logout());
-      toast.success('Logged out', { id: toastId, duration: 2000 }); 
+      toast.success('Logged out', { id: toastId, duration: 2000 });
       router.push('/login');
-
-    }catch(error){
-      toast.error("Logout failed", { id: toastId, duration: 2000 })
-    } 
+    } catch (error) {
+      toast.error('Logout failed', { id: toastId, duration: 2000 });
+    }
   };
 
   // toggle sidebar
