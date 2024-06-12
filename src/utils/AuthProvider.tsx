@@ -1,15 +1,14 @@
 "use client";
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
-import { store } from "@/redux/store";
-import { persistStore } from "redux-persist";
-import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "@/redux/store"; 
+import { PersistGate } from "redux-persist/integration/react"; 
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const persistor = persistStore(store)
+
+const AuthProvider = ({ children }: { children: ReactNode }) => { 
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         {children}
       </PersistGate>
     </Provider>

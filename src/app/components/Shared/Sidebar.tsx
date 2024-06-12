@@ -28,17 +28,22 @@ import { PiMicrosoftTeamsLogoBold } from 'react-icons/pi';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isOpenDrop, setIsOpenDrop] = useState(Array(4).fill(false));
+  const [isOpenDrop, setIsOpenDrop] = useState(Array(5).fill(false));
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   // logout user
-  const handleLogout = () => {
+  const handleLogout = async () => { 
     const toastId = toast.loading('loading...');
-    dispatch(logout());
-    router.push('/login');
-    toast.success('Logged out', { id: toastId, duration: 2000 });
+    try{
+      dispatch(logout());
+      toast.success('Logged out', { id: toastId, duration: 2000 }); 
+      router.push('/login');
+
+    }catch(error){
+      toast.error("Logout failed", { id: toastId, duration: 2000 })
+    } 
   };
 
   // toggle sidebar
@@ -70,7 +75,7 @@ const Sidebar = () => {
                   className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
                 />
                 <h5 className="hidden mt-4 text-xl font-semibold  lg:block">
-                  {user && user?.name}
+                  {user && user?.userId}
                 </h5>
                 <p className="text-lg text-green-500">{user && user.role}</p>
               </div>

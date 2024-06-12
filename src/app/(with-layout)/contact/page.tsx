@@ -42,28 +42,27 @@ const ContactPage = () => {
     }
   };
 
-  const contactFormSchema = z.object({ 
-    fullName: z.string({required_error:"Full name required"}),
-  email: z.string({required_error:"Email required"}),
-  phone: z.string({required_error:"Phone Number required"}),
-  ContactMethod: z.string({required_error:"contact method required"}),
+  const contactFormSchema = z.object({
+    fullName: z.string({ required_error: 'Full name required' }),
+    email: z.string({ required_error: 'Email required' }),
+    phone: z.string({ required_error: 'Phone Number required' }),
+    ContactMethod: z.string({ required_error: 'contact method required' }),
 
+    budget: z.number({ required_error: 'Please insert a positive number' }),
 
-  budget: z.number({required_error:"Please insert a positive number"}),
-
-
-  
-  currency: z.string({required_error:"choose a currency please"}),
-  companyName: z.string({required_error:"Company name missing"}),
-  website: z.string({required_error:"website link required"}),
-  inspirationWebsite: z.string({required_error:"Any website, you liked ?"}),
-  facebookPage: z.string({required_error:"Facebook link please"}),
-  serviceOrProduct: z.string({required_error:"what is your product ?"}),
-  location: z.string({required_error:"Your location please"}),
-  language: z.string({required_error:"Your language"}),
-  subject: z.string({required_error:"Subject line required"}),
-  clientMessages: z.string({required_error:"Client message required"}), 
-  })
+    currency: z.string({ required_error: 'choose a currency please' }),
+    companyName: z.string({ required_error: 'Company name missing' }),
+    website: z.string({ required_error: 'website link required' }),
+    inspirationWebsite: z.string({
+      required_error: 'Any website, you liked ?',
+    }),
+    facebookPage: z.string({ required_error: 'Facebook link please' }),
+    serviceOrProduct: z.string({ required_error: 'what is your product ?' }),
+    location: z.string({ required_error: 'Your location please' }),
+    language: z.string({ required_error: 'Your language' }),
+    subject: z.string({ required_error: 'Subject line required' }),
+    clientMessages: z.string({ required_error: 'Client message required' }),
+  });
 
   return (
     <>
@@ -73,24 +72,40 @@ const ContactPage = () => {
             <h1 className="text-4xl ">
               Contact <span className="font-bold">Form</span>
             </h1>
-           
           </div>
-          <EnaForm onSubmit={onSubmit} resolver={zodResolver(contactFormSchema)}>
+          <EnaForm
+            onSubmit={onSubmit}
+            resolver={zodResolver(contactFormSchema)}
+          >
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-5">
-             
-              <EnaInput type="text" name="fullName" placeholder="Your Full name"  />
-              <EnaInput type="text" name="email" placeholder="your email id"  />
-              <EnaInput type="text" name="phone" placeholder="your phone number"  />
- 
+              <EnaInput
+                type="text"
+                name="fullName"
+                placeholder="Your Full name"
+              />
+              <EnaInput type="text" name="email" placeholder="your email id" />
+              <EnaInput
+                type="text"
+                name="phone"
+                placeholder="your phone number"
+              />
             </div>
-           
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-5 content-center items-center ">
-            <EnaInput type="text" name="ContactMethod" placeholder="How we contact with you back"  />
-              <EnaInput type="number" name="budget" placeholder="your budget"  /> 
-              <EnaSelect type='select' name="currency" placeholder='please choose a currency' control={undefined}/>
-             
-{/*  
+              <EnaInput
+                type="text"
+                name="ContactMethod"
+                placeholder="How we contact with you back"
+              />
+              <EnaInput type="number" name="budget" placeholder="your budget" />
+              <EnaSelect
+                type="select"
+                name="currency"
+                placeholder="please choose a currency"
+                control={undefined}
+              />
+
+              {/*  
 
               <select
                 {...register('currency')}
@@ -105,24 +120,44 @@ const ContactPage = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-5">
-            <EnaInput type="text" name="companyName" placeholder="your user id"  />
-              <EnaInput type="text" name="website" placeholder="your user id"  />
-              <EnaInput type="text" name="inspirationWebsite" placeholder="your user id"  />
-   
+              <EnaInput
+                type="text"
+                name="companyName"
+                placeholder="your user id"
+              />
+              <EnaInput type="text" name="website" placeholder="your user id" />
+              <EnaInput
+                type="text"
+                name="inspirationWebsite"
+                placeholder="your user id"
+              />
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-5">
-            <EnaInput type="text" name="facebookPage" placeholder="your user id"  />
-              <EnaInput type="text" name="serviceOrProduct" placeholder="your user id"  />
-              <EnaInput type="text" name="location" placeholder="your user id"  />
- 
- 
+              <EnaInput
+                type="text"
+                name="facebookPage"
+                placeholder="your user id"
+              />
+              <EnaInput
+                type="text"
+                name="serviceOrProduct"
+                placeholder="your user id"
+              />
+              <EnaInput
+                type="text"
+                name="location"
+                placeholder="your user id"
+              />
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-            <EnaInput type="text" name="language" placeholder="your user id"  />
-              <EnaInput type="text" name="subject" placeholder="your user id"  />
-               
+              <EnaInput
+                type="text"
+                name="language"
+                placeholder="your user id"
+              />
+              <EnaInput type="text" name="subject" placeholder="your user id" />
             </div>
 
             <div className="my-4">
@@ -133,11 +168,12 @@ const ContactPage = () => {
                 defaultValue={''}
               />
             </div>
-            
+
             <div className="text-center">
               <button
-              type='submit'
-              className="btn lg:w-[570px] my-10 text-md py-3 px-8 border border-black relative group overflow-hidden font-semibold">
+                type="submit"
+                className="btn lg:w-[570px] my-10 text-md py-3 px-8 border border-black relative group overflow-hidden font-semibold"
+              >
                 <span className="absolute inset-0 bg-slate-700 z-0 transition-transform duration-500 transform -translate-x-full group-hover:translate-x-0"></span>
                 <span className="relative z-10 text-black group-hover:text-white uppercase">
                   Send a message

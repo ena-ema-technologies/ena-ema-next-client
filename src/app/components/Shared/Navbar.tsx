@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -12,15 +12,18 @@ const Navbar = () => {
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [showMenu, setShowMenu] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); 
 
-  const handleLogout = () => {
+  const handleLogout = async () => { 
     const toastId = toast.loading('loading...');
-    dispatch(logout());
-    router.push('/login');
-    toast.success('Logged out', { id: toastId, duration: 2000 });
-    setIsLoggedIn(false);
+    try{
+      dispatch(logout());
+      toast.success('Logged out', { id: toastId, duration: 2000 }); 
+      router.push('/login');
+
+    }catch(error){
+      toast.error("Logout failed", { id: toastId, duration: 2000 })
+    } 
   };
 
   return (
@@ -50,7 +53,7 @@ const Navbar = () => {
 
               <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-                  {isLoggedIn ? (
+                  
                     <Link href="/login">
                       <button className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white">
                         <span className="absolute bottom-0 left-0 flex w-full h-0 mt-0 transition-all duration-500 ease-out transform translate-y-0 bg-gray-200 group-hover:h-full"></span>
@@ -59,19 +62,16 @@ const Navbar = () => {
                         </span>
                       </button>
                     </Link>
-                  ) : (
-                    <>
-                      <span className="text-white font-medium bg-red-400">
-                        Welcome,
-                      </span>
+               
+                      <span className="text-white font-medium ">Welcome!</span>
                       <button
                         onClick={handleLogout}
                         className="btn btn-wide px-10 py-2.5 relative rounded group overflow-hidden font-medium bg-gray-600 text-white"
                       >
                         Logout
                       </button>
-                    </>
-                  )}
+                    
+                 
                 </div>
 
                 <div className="flex lg:hidden">

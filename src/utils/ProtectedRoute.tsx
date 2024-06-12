@@ -1,10 +1,12 @@
 "use client";
-import { logout, selectCurrentUser,  } from "@/redux/features/auth/authSlice";
+import { logout, selectCurrentToken, selectCurrentUser,  } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => { 
+
+
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const router = useRouter();
